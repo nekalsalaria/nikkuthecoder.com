@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProgress } from "../utils/progress";
-import arrayTopic from "../topics/array";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase"; // adjust path if needed
-
+import topics from "../topics";
 
 const Circle = ({ value, total, label, color }) => {
   const percent = total === 0 ? 0 : Math.round((value / total) * 100);
@@ -52,19 +51,18 @@ const Circle = ({ value, total, label, color }) => {
 };
 
 const Profile = () => {
-  
   const navigate = useNavigate();
   const handleLogout = async () => {
-  try {
-    await signOut(auth);
+    try {
+      await signOut(auth);
 
-    localStorage.clear();
+      localStorage.clear();
 
-    navigate("/");
-  } catch (err) {
-    console.log(err);
-  }
-};
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const [data, setData] = useState([]);
 
   // ✅ FIX: user defined here
@@ -73,20 +71,30 @@ const Profile = () => {
   useEffect(() => {
     const progress = getProgress();
 
-    const sections = arrayTopic.sections.map((sec) => {
-      const solved = sec.questions.filter((q) => progress[q.id]).length;
+    const sectionMap = {};
 
-      return {
-        name: sec.name,
-        solved,
-        total: sec.questions.length,
-      };
+    topics.forEach((topic) => {
+      topic.sections.forEach((sec) => {
+        if (!sectionMap[sec.name]) {
+          sectionMap[sec.name] = { solved: 0, total: 0 };
+        }
+
+        const solved = sec.questions.filter((q) => progress[q.id]).length;
+
+        sectionMap[sec.name].solved += solved;
+        sectionMap[sec.name].total += sec.questions.length;
+      });
     });
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setData(sections);
-  }, []);
+    const finalData = Object.keys(sectionMap).map((key) => ({
+      name: key,
+      solved: sectionMap[key].solved,
+      total: sectionMap[key].total,
+    }));
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setData(finalData);
+  }, []);
   return (
     <div className="min-h-screen bg-black text-white px-6 py-8">
       {/* TOP BAR */}

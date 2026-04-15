@@ -3,6 +3,7 @@ import TopicSection from "../components/TopicSection";
 import arrayTopic from "../topics/array";
 import StreakCalendar from "../components/StreakCalendar";
 import { useNavigate } from "react-router-dom";
+import stringTopic from "../topics/string";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -163,6 +164,7 @@ const Dashboard = () => {
         </p>
 
         <TopicSection topic={arrayTopic} />
+        <TopicSection topic={stringTopic} />
       </div>
     </div>
   );

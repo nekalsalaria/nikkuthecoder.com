@@ -1,21 +1,22 @@
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    localStorage.setItem("user", JSON.stringify(result.user));
-    console.log(result.user);
+    try {
+      const result = await signInWithPopup(auth, provider);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      console.log(result.user);
 
-    navigate("/dashboard"); // redirect
-  } catch (err) {
-    console.log(err);
-  }
-};
+      navigate("/dashboard"); // redirect
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="h-screen w-full bg-black text-white flex overflow-hidden">
@@ -78,10 +79,12 @@ const Login = () => {
           className="relative bg-[#0b0f19]/80 backdrop-blur-xl border border-green-500/20 p-10 rounded-3xl shadow-2xl w-95"
         >
           {/* Logo */}
-          <div className="mb-6 flex justify-center">
-            <div className="w-14 h-14 bg-linear-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center text-black font-bold text-xl shadow-lg">
-              N
-            </div>
+          <div className="mb-2 flex justify-center items-center">
+            <img
+              src="/logo.png"
+              alt="NIKKUtheCoder Logo"
+              className="w-40 sm:w-52 md:w-60 h-auto object-contain drop-shadow-xl"
+            />
           </div>
 
           {/* Title */}
