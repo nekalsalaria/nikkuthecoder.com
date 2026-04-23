@@ -1,172 +1,170 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getProgress } from "../utils/progress";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase"; // adjust path if needed
+import { auth } from "../firebase";
 import topics from "../topics";
+// eslint-disable-next-line no-unused-vars
+import axios from "axios";
+import { useProgress } from "../context/ProgressContext";
 
-const Circle = ({ value, total, label, color }) => {
-  const percent = total === 0 ? 0 : Math.round((value / total) * 100);
-  const r = 40;
-  const c = 2 * Math.PI * r;
-  const offset = c - (percent / 100) * c;
-
-  return (
-    <div className="flex flex-col items-center group">
-      <div className="relative w-24 h-24">
-        <svg className="-rotate-90 w-24 h-24">
-          <circle
-            cx="48"
-            cy="48"
-            r={r}
-            stroke="#1f2937"
-            strokeWidth="8"
-            fill="none"
-          />
-
-          <circle
-            cx="48"
-            cy="48"
-            r={r}
-            stroke={color}
-            strokeWidth="8"
-            fill="none"
-            strokeDasharray={c}
-            strokeDashoffset={offset}
-            strokeLinecap="round"
-            className="transition-all duration-500"
-          />
-        </svg>
-
-        <div className="absolute inset-0 flex items-center justify-center text-white font-bold text-sm">
-          {value}
-        </div>
-      </div>
-
-      <p className="text-xs text-gray-400 mt-2 group-hover:text-white transition">
-        {label}
-      </p>
-    </div>
-  );
+const getColor = (topic) => {
+  if (topic.includes("Array")) return "bg-orange-500";
+  if (topic.includes("String")) return "bg-purple-500";
+  if (topic.includes("STL")) return "bg-green-500";
+  if (topic.includes("TC")) return "bg-yellow-500";
+  if (topic.includes("Math")) return "bg-pink-500";
+  if (topic.includes("TWO_D_ARRAY")) return "bg-orange-500";
+  return "bg-gray-500";
 };
 
 const Profile = () => {
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { progress } = useProgress();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
   const handleLogout = async () => {
     try {
       await signOut(auth);
-
       localStorage.clear();
-
       navigate("/");
+      localStorage.removeItem("token");
     } catch (err) {
       console.log(err);
     }
   };
-  const [data, setData] = useState([]);
-
-  // ✅ FIX: user defined here
-  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    const progress = getProgress();
+    let topicData = topics.map((topic) => {
+      let solved = 0;
+      let total = 0;
 
-    const sectionMap = {};
-
-    topics.forEach((topic) => {
       topic.sections.forEach((sec) => {
-        if (!sectionMap[sec.name]) {
-          sectionMap[sec.name] = { solved: 0, total: 0 };
-        }
-
-        const solved = sec.questions.filter((q) => progress[q.id]).length;
-
-        sectionMap[sec.name].solved += solved;
-        sectionMap[sec.name].total += sec.questions.length;
+        sec.questions.forEach((q) => {
+          total++;
+          if (progress[q.id]) solved++;
+        });
       });
+
+      return {
+        name: topic.title,
+        solved,
+        total,
+      };
     });
 
-    const finalData = Object.keys(sectionMap).map((key) => ({
-      name: key,
-      solved: sectionMap[key].solved,
-      total: sectionMap[key].total,
-    }));
+    topicData.sort((a, b) => {
+      const pa = a.total === 0 ? 0 : a.solved / a.total;
+      const pb = b.total === 0 ? 0 : b.solved / b.total;
+      return pb - pa;
+    });
 
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setData(finalData);
-  }, []);
+    setData(topicData);
+    setLoading(false);
+  }, [progress]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-black">
+        <div className="w-8 h-8 border-2 border-green-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  const totalSolved = data.reduce((a, b) => a + b.solved, 0);
+  const totalQuestions = data.reduce((a, b) => a + b.total, 0);
+
+  const percent =
+    totalQuestions === 0 ? 0 : Math.round((totalSolved / totalQuestions) * 100);
+
   return (
-    <div className="min-h-screen bg-black text-white px-6 py-8">
+    <div className="min-h-screen bg-[#0a0a0a] text-white px-6 py-8">
       {/* TOP BAR */}
       <div className="flex justify-between items-center mb-10">
-        {/* BACK */}
         <button
           onClick={() => navigate("/dashboard")}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-green-400 transition cursor-pointer"
+          className="text-sm cursor-pointer text-gray-400 hover:text-green-400"
         >
-          ← Back to Dashboard
+          ← Dashboard
         </button>
 
-        {/* LOGOUT */}
         <button
           onClick={handleLogout}
-          className="px-4 py-2 text-sm bg-[#111827] border border-gray-800 rounded-lg text-gray-300 hover:text-red-400 hover:border-red-500/40 hover:shadow-[0_0_6px_rgba(239,68,68,0.3)] transition cursor-pointer"
+          className="px-4 py-2 cursor-pointer text-sm bg-[#0b0f19] border border-gray-800 rounded-lg hover:text-red-400"
         >
-          🚪 Logout
+          Logout
         </button>
       </div>
 
-      {/* HEADER */}
-      <div className="flex flex-col items-center mb-12">
-        {user?.photoURL ? (
-          <img
-            src={user.photoURL}
-            alt="user"
-            onError={(e) => {
-              e.target.style.display = "none";
-              e.target.nextSibling.style.display = "flex";
-            }}
-            className="w-10 h-10 rounded-full object-cover"
-          />
-        ) : null}
-
-        {/* Fallback Emoji */}
-        <div
-          className={`w-10 h-10 rounded-full bg-linear-to-br from-green-400 to-green-600 flex items-center justify-center text-black text-lg ${
-            user?.photoURL ? "hidden" : "flex"
-          }`}
-        >
-          😎
+      {/* PROFILE */}
+      <div className="flex items-center gap-5 mb-10">
+        {/* Avatar */}
+        <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
+          <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 bg-linear-to-br from-green-400 to-green-600 flex items-center justify-center text-black text-lg">
+            😎
+          </div>
         </div>
-        <h2 className="text-3xl font-bold">{user?.displayName || "User"}</h2>
 
-        <p className="text-gray-400 text-sm mt-1">
-          Stay consistent. Results will follow.
-        </p>
+        {/* User Info */}
+        <div>
+          <h2 className="text-lg font-semibold">
+            {user?.displayName || "User"}
+          </h2>
+          <p className="text-sm text-gray-400">Keep improving daily 🚀</p>
+        </div>
       </div>
 
-      {/* 🔥 CIRCULAR STATS */}
-      <div className="flex justify-center gap-10 flex-wrap">
-        {data.map((sec, i) => (
-          <Circle
-            key={i}
-            value={sec.solved}
-            total={sec.total}
-            label={sec.name}
-            color={
-              sec.name === "Basics"
-                ? "#22c55e"
-                : sec.name === "Easy"
-                  ? "#3b82f6"
-                  : "#facc15"
-            }
-          />
-        ))}
+      {/* OVERALL */}
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-10">
+        <div className="bg-[#0b0f19] p-4 rounded-lg border border-gray-800">
+          <p className="text-xs text-gray-400">Solved</p>
+          <h3 className="text-xl font-bold">{totalSolved}</h3>
+        </div>
+
+        <div className="bg-[#0b0f19] p-4 rounded-lg border border-gray-800">
+          <p className="text-xs text-gray-400">Total</p>
+          <h3 className="text-xl font-bold">{totalQuestions}</h3>
+        </div>
+
+        <div className="bg-[#0b0f19] p-4 rounded-lg border border-gray-800">
+          <p className="text-xs text-gray-400">Completion</p>
+          <h3 className="text-xl font-bold">{percent}%</h3>
+        </div>
       </div>
 
-      {/* FOOTER LINE */}
-      <div className="text-center mt-12 text-xs text-gray-500">
-        Track your growth. Stay consistent. Win long term.
+      {/* TOPICS */}
+      <div className="space-y-4">
+        <h3 className="text-sm text-gray-500 uppercase">Topics Progress</h3>
+
+        {data.map((topic, i) => {
+          const percent =
+            topic.total === 0
+              ? 0
+              : Math.round((topic.solved / topic.total) * 100);
+
+          return (
+            <div
+              key={i}
+              className="bg-[#0b0f19] p-4 rounded-lg border border-gray-800"
+            >
+              <div className="flex justify-between mb-2">
+                <span>{topic.name}</span>
+                <span className="text-xs text-gray-400">
+                  {topic.solved}/{topic.total}
+                </span>
+              </div>
+
+              <div className="w-full h-2 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  style={{ width: `${percent}%` }}
+                  className={`h-full ${getColor(topic.name)} transition-all`}
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

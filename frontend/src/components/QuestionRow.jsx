@@ -1,55 +1,155 @@
-import { useState, useEffect } from "react";
-import { getProgress, saveProgress } from "../utils/progress";
-import { getNotes, saveNotes } from "../utils/notes";
-import { getRevision, saveRevision } from "../utils/revision";
-import { markToday } from "../utils/streak";
+/* eslint-disable no-undef */
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import { auth } from "../firebase";
+import { useProgress } from "../context/ProgressContext";
 
 const QuestionRow = ({ q, isChecked, onToggle }) => {
+  const { progress, setProgress } = useProgress();
+
   const [openNotes, setOpenNotes] = useState(false);
   const [text, setText] = useState("");
   const [isStarred, setIsStarred] = useState(false);
 
-  useEffect(() => {
-    const notes = getNotes();
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setText(notes[q.id] || "");
+  const debounceRef = useRef(null);
 
-    const rev = getRevision();
-    setIsStarred(rev[q.id] || false);
+  // ✅ LOAD NOTES + REVISION FROM BACKEND
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = await auth.currentUser.getIdToken();
+
+        // NOTES
+        const notesRes = await axios.get(
+          `http://localhost:5000/api/user/notes/${auth.currentUser.uid}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        setText(notesRes.data[q.id] || "");
+
+        // REVISION
+        const revRes = await axios.get(
+          `http://localhost:5000/api/user/revision/${auth.currentUser.uid}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+
+        setIsStarred(revRes.data[q.id] || false);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
   }, [q.id]);
 
+  // ✅ PROGRESS (UNCHANGED)
   const handleCheck = () => {
-    const progress = getProgress();
     const updated = { ...progress, [q.id]: !isChecked };
 
-    saveProgress(updated);
+    setProgress(updated);
     onToggle(q.id, !isChecked);
 
-    // ✅ mark streak ONLY when marking as solved
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const token = await auth.currentUser.getIdToken();
+
+        await axios.post(
+          "http://localhost:5000/api/user/progress",
+          { progress: updated },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    }, 500);
+
     if (!isChecked) {
       markToday();
     }
   };
 
-  const handleSaveNotes = () => {
-    const notes = getNotes();
-    const updated = { ...notes, [q.id]: text };
-    saveNotes(updated);
-    setOpenNotes(false);
+  // ✅ SAVE NOTES (BACKEND)
+  const handleSaveNotes = async () => {
+    try {
+      const token = await auth.currentUser.getIdToken();
+
+      const res = await axios.get(
+        `http://localhost:5000/api/user/notes/${auth.currentUser.uid}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const updated = { ...res.data, [q.id]: text };
+
+      await axios.post(
+        "http://localhost:5000/api/user/notes",
+        {
+          userId: auth.currentUser.uid,
+          notes: updated,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setOpenNotes(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const handleStar = () => {
-    const rev = getRevision();
-    const updated = { ...rev, [q.id]: !isStarred };
+  // ✅ SAVE REVISION (BACKEND)
+  const handleStar = async () => {
+    try {
+      const token = await auth.currentUser.getIdToken();
 
-    saveRevision(updated);
-    setIsStarred(!isStarred);
+      const res = await axios.get(
+        `http://localhost:5000/api/user/revision/${auth.currentUser.uid}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const updated = {
+        ...res.data,
+        [q.id]: !isStarred,
+      };
+
+      await axios.post(
+        "http://localhost:5000/api/user/revision",
+        {
+          userId: auth.currentUser.uid,
+          revision: updated,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      setIsStarred(!isStarred);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <>
-      <div className="grid grid-cols-6 items-center text-sm py-3 px-4 border border-gray-800 rounded-lg bg-[#0f172a]">
-        {/* Status */}
+      <div className="grid grid-cols-[40px_2fr_1fr_1fr_1fr_1fr] items-center text-sm py-3 px-4 border border-gray-800 rounded-lg bg-[#0f172a]">
+        
+        {/* Checkbox */}
         <input
           type="checkbox"
           checked={isChecked}
@@ -57,10 +157,8 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           className="w-4 h-4 accent-green-500 cursor-pointer"
         />
 
-        {/* Problem */}
-        <p
-          className={`${isChecked ? "line-through text-gray-500" : "text-gray-200"}`}
-        >
+        {/* Title */}
+        <p className={`${isChecked ? "line-through text-gray-500" : "text-gray-200"}`}>
           {q.title}
         </p>
 
@@ -82,7 +180,7 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           📝
         </button>
 
-        {/* ⭐ REVISION */}
+        {/* Revision */}
         <button
           onClick={handleStar}
           className={`cursor-pointer text-lg ${
@@ -114,14 +212,14 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
             <div className="flex justify-end gap-2 mt-3">
               <button
                 onClick={() => setOpenNotes(false)}
-                className="text-gray-400 cursor-pointer hover:text-white transition"
+                className="text-gray-400 hover:text-white"
               >
                 Cancel
               </button>
 
               <button
                 onClick={handleSaveNotes}
-                className="bg-green-500 text-black px-3 py-1 rounded cursor-pointer hover:bg-green-600 transition"
+                className="bg-green-500 text-black px-3 py-1 rounded hover:bg-green-600"
               >
                 Save
               </button>

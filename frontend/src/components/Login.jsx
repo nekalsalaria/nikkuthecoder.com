@@ -3,16 +3,27 @@ import { signInWithPopup } from "firebase/auth";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      localStorage.setItem("user", JSON.stringify(result.user));
-      console.log(result.user);
+      const user = result.user;
 
-      navigate("/dashboard"); // redirect
+      // save locally (keep this)
+      localStorage.setItem("user", JSON.stringify(user));
+
+      // ✅ ADD THIS (IMPORTANT)
+      await axios.post("http://localhost:5000/api/auth/google-login", {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL,
+      });
+
+      navigate("/dashboard");
+      localStorage.setItem("token", "user_logged_in");
     } catch (err) {
       console.log(err);
     }

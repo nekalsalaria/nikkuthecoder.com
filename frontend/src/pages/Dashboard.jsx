@@ -1,19 +1,37 @@
 import { useState } from "react";
 import TopicSection from "../components/TopicSection";
 import arrayTopic from "../topics/array";
-import StreakCalendar from "../components/StreakCalendar";
 import { useNavigate } from "react-router-dom";
 import stringTopic from "../topics/string";
+import STL from "../topics/stl";
+import TCSC from "../topics/tcsc";
+import Math from "../topics/MATH";
+import TWO_D_ARRAY from "../topics/2darray";
+import { useEffect } from "react";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
   const navigate = useNavigate(); // ✅ FIXED (inside component)
   const user = JSON.parse(localStorage.getItem("user"));
+  const [totalUsers, setTotalUsers] = useState(0);
 
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/total-users");
+        const data = await res.json();
+        setTotalUsers(data.totalUsers);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    fetchUsers();
+  }, []);
   return (
-    <div className="min-h-screen bg-black text-white flex">
+    <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
       {/* 🔥 FIXED SIDEBAR */}
-      <div className="w-64 h-screen fixed left-0 top-0 bg-[#0b0f19] border-r border-gray-800 p-6 flex flex-col justify-between">
+      <div className="w-full lg:w-64 lg:h-screen lg:fixed lg:left-0 lg:top-0 bg-[#0b0f19] border-r border-gray-800 p-4 sm:p-6 flex flex-col justify-between">
         {/* TOP */}
         <div>
           {/* ✅ PROFILE (FIXED UI) */}
@@ -51,7 +69,7 @@ const Dashboard = () => {
                 {user?.displayName || "User"}
               </p>
 
-              <p className="text-gray-400 text-xs truncate max-w-35">
+              <p className="text-gray-400 text-xs truncate max-w-30 sm:max-w-40">
                 {user?.email}
               </p>
 
@@ -66,20 +84,29 @@ const Dashboard = () => {
 
           {/* Divider */}
           <div className="h-px bg-gray-800 mb-4"></div>
+        </div>
+        <div className="bg-linear-to-br from-[#111827] to-[#0b0f19] border border-gray-800 rounded-xl p-5 text-center shadow-md hover:shadow-green-500/10 transition">
+          {/* Title */}
+          <p className="text-[11px] uppercase tracking-wider text-gray-400 text-shadow: 0 0 10px rgba(34,197,94,0.6);">
+            Total Learners on the Platform
+          </p>
 
-          {/* Calendar */}
-          <StreakCalendar />
+          {/* Count */}
+          <h2 className="text-3xl font-bold text-green-400 mt-2">
+            {totalUsers}+
+          </h2>
+
+          {/* Divider */}
+          <div className="w-10 h-0.5 bg-green-500 mx-auto my-3 opacity-60"></div>
 
           {/* Motivation */}
-          <div className="text-xs text-gray-400 leading-relaxed space-y-2 mt-5 ">
-            <p>Consistency beats intensity.</p>
-            <p>1% better every day.</p>
-            <p>Small steps → Big results.</p>
-          </div>
-        </div>
+          <p className="text-[12px] text-orange-400 leading-relaxed ">
+            1% better every day.
+          </p>
 
+        </div>
         {/* BOTTOM */}
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {/* Buy Me a Coffee */}
           <button
             onClick={() => setOpenQR(true)}
@@ -91,7 +118,7 @@ const Dashboard = () => {
           {/* QR POPUP */}
           {openQR && (
             <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-              <div className="bg-[#0b0f19] border border-gray-800 rounded-xl shadow-xl flex overflow-hidden">
+              <div className="bg-[#0b0f19] border border-gray-800 rounded-xl shadow-xl flex flex-col sm:flex-row overflow-hidden w-[90%] sm:w-auto">
                 {/* LEFT */}
                 <div className="p-6 text-center border-r border-gray-800">
                   <h3 className="text-white mb-4">Support (Min ₹50)</h3>
@@ -115,7 +142,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* RIGHT */}
-                <div className="p-6 w-64 bg-[#111827]">
+               <div className="p-6 w-full sm:w-64 bg-[#111827]">
                   <p className="text-xs text-gray-500 mb-4">Top Donator</p>
 
                   <div className="flex items-center gap-3 mb-4">
@@ -153,8 +180,8 @@ const Dashboard = () => {
       </div>
 
       {/* MAIN */}
-      <div className="flex-1 ml-64 p-8 overflow-y-auto h-screen">
-        <h2 className="text-2xl font-semibold mb-2">
+      <div className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 overflow-y-auto lg:h-screen">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-2">
           Your DSA Journey Starts Here 🚀
         </h2>
 
@@ -162,9 +189,12 @@ const Dashboard = () => {
           Solve problems step-by-step from Basics to Medium. Build consistency
           and become interview-ready.
         </p>
-
+        <TopicSection topic={TCSC} />
+        <TopicSection topic={STL} />
         <TopicSection topic={arrayTopic} />
         <TopicSection topic={stringTopic} />
+        <TopicSection topic={TWO_D_ARRAY} />
+        <TopicSection topic={Math} />
       </div>
     </div>
   );
