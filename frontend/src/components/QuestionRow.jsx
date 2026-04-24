@@ -75,9 +75,9 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
       }
     }, 500);
 
-    if (!isChecked) {
-      markToday();
-    }
+    // if (!isChecked) {
+    //   markToday();
+    // }
   };
 
   // ✅ SAVE NOTES (BACKEND)
@@ -167,7 +167,7 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           href={q.link}
           target="_blank"
           rel="noreferrer"
-          className="text-green-400 cursor-pointer"
+          className="text-green-400 cursor-pointer hover:underline"
         >
           Solve
         </a>
@@ -175,7 +175,7 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
         {/* Notes */}
         <button
           onClick={() => setOpenNotes(true)}
-          className="text-gray-400 hover:text-green-400 cursor-pointer"
+          className="text-gray-400 hover:text-green-400 cursor-pointer "
         >
           📝
         </button>
@@ -186,14 +186,14 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           className={`cursor-pointer text-lg ${
             isStarred
               ? "text-yellow-400"
-              : "text-gray-500 hover:text-yellow-400"
+              : "text-gray-500 hover:text-yellow-400 cursor-pointer"
           }`}
         >
           {isStarred ? "★" : "☆"}
         </button>
 
         {/* Difficulty */}
-        <span className="text-xs text-green-400">{q.difficulty}</span>
+        <span className="text-xs text-green-400 cursor-pointer">{q.difficulty}</span>
       </div>
 
       {/* NOTES MODAL */}
@@ -212,14 +212,14 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
             <div className="flex justify-end gap-2 mt-3">
               <button
                 onClick={() => setOpenNotes(false)}
-                className="text-gray-400 hover:text-white"
+                className="text-gray-400 hover:text-white cursor-pointer"
               >
                 Cancel
               </button>
 
               <button
                 onClick={handleSaveNotes}
-                className="bg-green-500 text-black px-3 py-1 rounded hover:bg-green-600"
+                className="bg-green-500 text-black px-3 py-1 rounded cursor-pointer hover:bg-green-600"
               >
                 Save
               </button>

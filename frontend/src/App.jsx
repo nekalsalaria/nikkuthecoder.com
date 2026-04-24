@@ -4,6 +4,7 @@ import Profile from "./pages/Profile";
 import Login from "./components/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import CSSubjects from "./pages/CSSubjects"; // ✅ ADD THIS
 
 function App() {
   return (
@@ -33,6 +34,16 @@ function App() {
         element={
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        }
+      />
+
+      {/* ✅ NEW ROUTE */}
+      <Route
+        path="/cs-subjects"
+        element={
+          <PrivateRoute>
+            <CSSubjects />
           </PrivateRoute>
         }
       />

@@ -82,28 +82,69 @@ const Dashboard = () => {
             NIKKUtheCoder.com
           </h1>
 
+          {/* Useful Links Heading */}
+          <div className="mb-3">
+            <p className="text-[10px] uppercase tracking-[0.2em] text-green-400 font-semibold">
+              Useful Links
+            </p>
+            <div className="w-8 h-0.5 bg-green-400 mt-1 rounded-full"></div>
+          </div>
+
+          {/* Single CTA Button */}
+          <button
+            onClick={() => navigate("/dsa-approach")}
+            className="w-full cursor-pointer flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
+          >
+            <div className="flex items-center gap-2 cursor-pointer">
+              <span className="text-green-400 group-hover:scale-110 transition">
+                🧠
+              </span>
+              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
+                How to Approach Any DSA Question
+              </span>
+            </div>
+
+            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
+          {/* CS Subjects Button */}
+          <button
+            onClick={() => navigate("/cs-subjects")}
+            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-blue-400 group-hover:scale-110 transition">
+                📚
+              </span>
+              <span className="font-medium">CS Subjects Links</span>
+            </div>
+
+            <span className="text-[10px] text-blue-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
+
           {/* Divider */}
           <div className="h-px bg-gray-800 mb-4"></div>
         </div>
-        <div className="bg-linear-to-br from-[#111827] to-[#0b0f19] border border-gray-800 rounded-xl p-5 text-center shadow-md hover:shadow-green-500/10 transition">
-          {/* Title */}
-          <p className="text-[11px] uppercase tracking-wider text-gray-400 text-shadow: 0 0 10px rgba(34,197,94,0.6);">
-            Total Learners on the Platform
-          </p>
+        <div className="flex items-center justify-between gap-3 bg-linear-to-r from-[#0b0f19] via-[#0f172a] to-[#020617] border border-gray-800 rounded-xl px-4 py-2.5 shadow-md hover:shadow-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
+          {/* Left: Icon + Title */}
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 flex items-center justify-center rounded-md bg-green-500/10 text-green-400 group-hover:bg-green-500/20 transition">
+              👥
+            </div>
 
-          {/* Count */}
-          <h2 className="text-3xl font-bold text-green-400 mt-2">
+            <p className="text-[10px] uppercase tracking-wider text-gray-400 group-hover:text-gray-300 whitespace-nowrap">
+              Total Learners
+            </p>
+          </div>
+
+          {/* Right: Count */}
+          <h2 className="text-xl font-bold text-green-400 relative">
             {totalUsers}+
+            <span className="absolute -inset-1 blur-md bg-green-400/20 opacity-0 group-hover:opacity-100 transition"></span>
           </h2>
-
-          {/* Divider */}
-          <div className="w-10 h-0.5 bg-green-500 mx-auto my-3 opacity-60"></div>
-
-          {/* Motivation */}
-          <p className="text-[12px] text-orange-400 leading-relaxed ">
-            1% better every day.
-          </p>
-
         </div>
         {/* BOTTOM */}
         <div className="space-y-3 sm:space-y-4">
@@ -142,7 +183,7 @@ const Dashboard = () => {
                 </div>
 
                 {/* RIGHT */}
-               <div className="p-6 w-full sm:w-64 bg-[#111827]">
+                <div className="p-6 w-full sm:w-64 bg-[#111827]">
                   <p className="text-xs text-gray-500 mb-4">Top Donator</p>
 
                   <div className="flex items-center gap-3 mb-4">
