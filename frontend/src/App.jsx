@@ -11,6 +11,7 @@ import SpaceComplexity from "./pages/spacecomplexity";
 import SCPractice from "./pages/SCPractice";
 import Containers from "./pages/Containers"; // ✅ ADD THIS
 import InbuiltFunctions from "./pages/InbuiltFunctions";
+import DsaApproach from "./pages/Dsa-approach";
 
 function App() {
   return (
@@ -121,6 +122,15 @@ function App() {
         element={
           <PrivateRoute>
             <InbuiltFunctions />
+          </PrivateRoute>
+        }
+      />
+      
+      <Route
+        path="/dsa-approach"
+        element={
+          <PrivateRoute>
+            <DsaApproach/>
           </PrivateRoute>
         }
       />

@@ -8,6 +8,11 @@ import TCSC from "../topics/tcsc";
 import Math from "../topics/MATH";
 import TWO_D_ARRAY from "../topics/2darray";
 import { useEffect } from "react";
+import RECURSION from "../topics/recursion";
+import STACK_QUEUE from "../topics/stack&queue";
+import LINKED_LIST from "../topics/linkedlist";
+import TREE from "../topics/tree";
+import GRAPH from "../topics/graph";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -124,6 +129,23 @@ const Dashboard = () => {
               →
             </span>
           </button>
+          <button
+            onClick={() =>
+              window.open("https://swapskill-com-1.onrender.com/", "_blank")
+            }
+            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-green-400 group-hover:scale-110 transition">
+                🔗
+              </span>
+              <span className="font-medium">SwapSkill Other Product</span>
+            </div>
+
+            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
 
           {/* Divider */}
           <div className="h-px bg-gray-800 mb-4"></div>
@@ -236,6 +258,11 @@ const Dashboard = () => {
         <TopicSection topic={stringTopic} />
         <TopicSection topic={TWO_D_ARRAY} />
         <TopicSection topic={Math} />
+        <TopicSection topic={RECURSION}/>
+        <TopicSection topic={STACK_QUEUE}/>
+        <TopicSection topic={LINKED_LIST}/>
+        <TopicSection topic={TREE}/>
+        <TopicSection topic={GRAPH}/>
       </div>
     </div>
   );

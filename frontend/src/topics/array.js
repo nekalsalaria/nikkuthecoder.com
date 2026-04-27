@@ -101,64 +101,37 @@ const arrayTopic = {
                 { id: "array-46", title: "Missing Number", difficulty: "Easy", link: "https://leetcode.com/problems/missing-number/" },
                 { id: "array-47", title: "Minimum Operations to Make the Array Increasing", difficulty: "Easy", link: "https://leetcode.com/problems/minimum-operations-to-make-the-array-increasing/" },
                 { id: "array-48", title: "Best Time to Buy and Sell Stock", difficulty: "Easy", link: "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" },
-                { id: "array-49", title: "Rotate Array", difficulty: "Easy", link: "https://leetcode.com/problems/rotate-array/" },
-
             ],
         },
-        {
-            name: "Medium",
-            questions: [
+       {
+  name: "Medium",
+  questions: [
 
-                // 🔹 LOW MEDIUM (closest to Easy)
-                { id: "array-51", title: "Container With Most Water", difficulty: "Medium", link: "https://leetcode.com/problems/container-with-most-water/" },
-                { id: "array-52", title: "Product of Array Except Self", difficulty: "Medium", link: "https://leetcode.com/problems/product-of-array-except-self/" },
-                { id: "array-53", title: "Maximum Subarray", difficulty: "Medium", link: "https://leetcode.com/problems/maximum-subarray/" },
-                { id: "array-54", title: "Subarray Sum Equals K", difficulty: "Medium", link: "https://leetcode.com/problems/subarray-sum-equals-k/" },
+    // 🔹 MOST ASKED + EASY MEDIUM (must do)
+    { id: "array-53", title: "Maximum Subarray", difficulty: "Medium", link: "https://leetcode.com/problems/maximum-subarray/" },
+    { id: "array-52", title: "Product of Array Except Self", difficulty: "Medium", link: "https://leetcode.com/problems/product-of-array-except-self/" },
+    { id: "array-54", title: "Subarray Sum Equals K", difficulty: "Medium", link: "https://leetcode.com/problems/subarray-sum-equals-k/" },
 
-                // 🔹 HASHING / BASIC PATTERNS
-                { id: "array-55", title: "Find All Duplicates in an Array", difficulty: "Medium", link: "https://leetcode.com/problems/find-all-duplicates-in-an-array/" },
-                { id: "array-56", title: "Find All Numbers Disappeared in an Array (Medium Pattern)", difficulty: "Medium", link: "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/" },
-                { id: "array-57", title: "Longest Consecutive Sequence", difficulty: "Medium", link: "https://leetcode.com/problems/longest-consecutive-sequence/" },
+    // 🔹 TWO POINTER / GREEDY (very important)
+    { id: "array-51", title: "Container With Most Water", difficulty: "Medium", link: "https://leetcode.com/problems/container-with-most-water/" },
+    { id: "array-58", title: "Sort Colors", difficulty: "Medium", link: "https://leetcode.com/problems/sort-colors/" },
 
-                // 🔹 TWO POINTER / GREEDY
-                { id: "array-58", title: "Sort Colors", difficulty: "Medium", link: "https://leetcode.com/problems/sort-colors/" },
-                { id: "array-59", title: "Remove Duplicates from Sorted Array II", difficulty: "Medium", link: "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/" },
-                { id: "array-60", title: "Minimum Size Subarray Sum", difficulty: "Medium", link: "https://leetcode.com/problems/minimum-size-subarray-sum/" },
+    // 🔹 INTERVAL BASICS (very high interview frequency)
+    { id: "array-63", title: "Merge Intervals", difficulty: "Medium", link: "https://leetcode.com/problems/merge-intervals/" },
 
-                // 🔹 PREFIX / SLIDING WINDOW
-                { id: "array-61", title: "Maximum Average Subarray I", difficulty: "Medium", link: "https://leetcode.com/problems/maximum-average-subarray-i/" },
-                { id: "array-62", title: "Continuous Subarray Sum", difficulty: "Medium", link: "https://leetcode.com/problems/continuous-subarray-sum/" },
+    // 🔹 GREEDY (easy-medium)
+    { id: "array-69", title: "Jump Game", difficulty: "Medium", link: "https://leetcode.com/problems/jump-game/" },
 
-                // 🔹 INTERVALS (very popular)
-                { id: "array-63", title: "Merge Intervals", difficulty: "Medium", link: "https://leetcode.com/problems/merge-intervals/" },
-                { id: "array-64", title: "Insert Interval", difficulty: "Medium", link: "https://leetcode.com/problems/insert-interval/" },
-                { id: "array-65", title: "Non-overlapping Intervals", difficulty: "Medium", link: "https://leetcode.com/problems/non-overlapping-intervals/" },
+    // 🔹 BINARY SEARCH BASICS
+    { id: "array-72", title: "Find Peak Element", difficulty: "Medium", link: "https://leetcode.com/problems/find-peak-element/" },
+    { id: "array-73", title: "Search in Rotated Sorted Array", difficulty: "Medium", link: "https://leetcode.com/problems/search-in-rotated-sorted-array/" },
 
-                // 🔹 MATRIX (entry level)
-                { id: "array-66", title: "Set Matrix Zeroes", difficulty: "Medium", link: "https://leetcode.com/problems/set-matrix-zeroes/" },
-                { id: "array-67", title: "Spiral Matrix", difficulty: "Medium", link: "https://leetcode.com/problems/spiral-matrix/" },
-                { id: "array-68", title: "Rotate Image", difficulty: "Medium", link: "https://leetcode.com/problems/rotate-image/" },
+    // 🔹 INTERVIEW FAVORITES
+    { id: "array-77", title: "Kth Largest Element in an Array", difficulty: "Medium", link: "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
+    { id: "array-78", title: "Top K Frequent Elements", difficulty: "Medium", link: "https://leetcode.com/problems/top-k-frequent-elements/" },
 
-                // 🔹 GREEDY / ARRAY LOGIC
-                { id: "array-69", title: "Jump Game", difficulty: "Medium", link: "https://leetcode.com/problems/jump-game/" },
-                { id: "array-70", title: "Jump Game II", difficulty: "Medium", link: "https://leetcode.com/problems/jump-game-ii/" },
-                { id: "array-71", title: "Gas Station", difficulty: "Medium", link: "https://leetcode.com/problems/gas-station/" },
-
-                // 🔹 BINARY SEARCH + ARRAY
-                { id: "array-72", title: "Find Peak Element", difficulty: "Medium", link: "https://leetcode.com/problems/find-peak-element/" },
-                { id: "array-73", title: "Search in Rotated Sorted Array", difficulty: "Medium", link: "https://leetcode.com/problems/search-in-rotated-sorted-array/" },
-                { id: "array-74", title: "Find Minimum in Rotated Sorted Array", difficulty: "Medium", link: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" },
-
-                // 🔹 ADVANCED BUT COMMON
-                { id: "array-75", title: "Next Permutation", difficulty: "Medium", link: "https://leetcode.com/problems/next-permutation/" },
-                { id: "array-76", title: "Majority Element II", difficulty: "Medium", link: "https://leetcode.com/problems/majority-element-ii/" },
-                { id: "array-77", title: "Kth Largest Element in an Array", difficulty: "Medium", link: "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
-
-                // 🔹 TOP INTERVIEW QUESTIONS
-                { id: "array-78", title: "Top K Frequent Elements", difficulty: "Medium", link: "https://leetcode.com/problems/top-k-frequent-elements/" },
-                { id: "array-79", title: "Daily Temperatures", difficulty: "Medium", link: "https://leetcode.com/problems/daily-temperatures/" },
-            ],
-        }
+  ],
+}
     ],
 };
 
