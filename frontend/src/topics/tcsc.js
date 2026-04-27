@@ -8,20 +8,14 @@ const TCSC = {
                 {
                     id: "tcsc-tc-001",
                     title: "What is Time Complexity?",
-                    link: "https://www.geeksforgeeks.org/time-complexity-and-space-complexity/",
+                    link: "/time-complexity",
                     difficulty: "Easy",
                 },
                 {
                     id: "tcsc-tc-002",
-                    title: "Time Complexity Examples (Loops, Nested Loops)",
-                    link: "https://www.geeksforgeeks.org/how-to-analyse-loops-for-complexity-analysis-of-algorithms/",
+                    title: "Practice Problems on Time Complexity",
+                    link: "/tc-practice",
                     difficulty: "Easy",
-                },
-                {
-                    id: "tcsc-tc-003",
-                    title: "Best, Average and Worst Case",
-                    link: "https://www.geeksforgeeks.org/worst-average-and-best-case-analysis-of-algorithms/",
-                    difficulty: "Medium",
                 },
             ],
         },
@@ -32,7 +26,13 @@ const TCSC = {
                 {
                     id: "tcsc-sc-001",
                     title: "What is Space Complexity?",
-                    link: "https://www.geeksforgeeks.org/time-complexity-and-space-complexity/",
+                    link: "/space-complexity",
+                    difficulty: "Easy",
+                },
+                {
+                    id: "tcsc-sc-002",
+                    title: "Practice Problems on Space Complexity",
+                    link: "/sc-practice",
                     difficulty: "Easy",
                 },
             ],

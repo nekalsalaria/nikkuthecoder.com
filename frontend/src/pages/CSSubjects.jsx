@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/immutability */
 import { useNavigate } from "react-router-dom";
 
 const subjects = [
@@ -36,21 +37,29 @@ const subjects = [
 export default function CSSubjects() {
   const navigate = useNavigate();
 
+  // 🔥 HANDLE CLICK (CORE FIX)
+  const handleClick = (link) => {
+    if (link.startsWith("/")) {
+      navigate(link); // internal route
+    } else {
+      window.location.href = link; // external → same tab
+    }
+  };
+
   return (
     <div className="min-h-screen bg-linear-to-br from-black via-[#020617] to-black text-white px-5 py-6">
 
-      {/* 🔙 Back + Header */}
+      {/* Back */}
       <div className="flex items-center justify-between mb-6">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/dashboard")}
           className="text-xs px-3 py-1.5 rounded-md bg-[#111827] cursor-pointer border border-gray-700 hover:border-green-400 hover:text-green-400 transition"
         >
-          ← Back
+          ← Dashboard
         </button>
       </div>
 
       {/* Title */}
-      
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-green-400 leading-tight">
           Core CS Subjects
@@ -63,19 +72,16 @@ export default function CSSubjects() {
       {/* Grid */}
       <div className="grid sm:grid-cols-2 gap-5">
         {subjects.map((sub, i) => (
-          <a
+          <div
             key={i}
-            href={sub.link}
-            target="_blank"
-            rel="noreferrer"
-            className="relative group overflow-hidden rounded-xl border border-gray-800 p-4 bg-[#0b0f19] hover:border-green-500/40 hover:-translate-y-1 transition-all duration-300"
+            onClick={() => handleClick(sub.link)}
+            className="relative group overflow-hidden rounded-xl border border-gray-800 p-4 bg-[#0b0f19] cursor-pointer hover:scale-[1.02] transition"
           >
-            {/* Glow Background */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-r from-green-500/10 via-transparent to-green-500/10 blur-xl"></div>
+            {/* Glow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-linear-to-r from-green-500/10 via-transparent to-green-500/10 blur-xl"></div>
 
             {/* Content */}
             <div className="relative z-10">
-              {/* Top Row */}
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-green-500/10 text-green-400 text-lg group-hover:scale-110 transition">
@@ -92,12 +98,10 @@ export default function CSSubjects() {
                 </span>
               </div>
 
-              {/* Title */}
               <p className="text-xs text-gray-400 group-hover:text-gray-300 transition">
                 {sub.title}
               </p>
 
-              {/* Bottom Tag */}
               <div className="mt-4 flex justify-between items-center">
                 <span className="text-[10px] text-gray-500">
                   YouTube Resource
@@ -108,11 +112,11 @@ export default function CSSubjects() {
                 </span>
               </div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
 
-      {/* Bottom Line */}
+      {/* Footer */}
       <div className="mt-10 text-center">
         <p className="text-xs text-gray-500">
           DSA + Core Subjects = Selection Probability ↑

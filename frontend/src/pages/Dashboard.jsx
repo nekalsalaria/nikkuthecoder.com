@@ -208,15 +208,15 @@ const Dashboard = () => {
           )}
 
           {/* LinkedIn */}
-          <a
-            href="https://www.linkedin.com/in/nekalsingh/"
-            target="_blank"
-            rel="noreferrer"
-            className="flex items-center justify-center gap-2 text-xs text-gray-400 hover:text-green-400 transition bg-[#111827] border border-gray-800 rounded-lg py-2 hover:border-green-500/40 hover:shadow-[0_0_8px_rgba(34,197,94,0.3)]"
+          <div
+            onClick={() =>
+              (window.location.href = "https://www.linkedin.com/in/nekalsingh/")
+            }
+            className="flex items-center justify-center gap-2 text-xs text-gray-400 hover:text-green-400 transition bg-[#111827] border border-gray-800 rounded-lg py-2 hover:border-green-500/40 hover:shadow-[0_0_8px_rgba(34,197,94,0.3)] cursor-pointer"
           >
             <span>🔗</span>
             Built by <span className="font-medium text-white">Nekal Singh</span>
-          </a>
+          </div>
         </div>
       </div>
 
@@ -230,8 +230,8 @@ const Dashboard = () => {
           Solve problems step-by-step from Basics to Medium. Build consistency
           and become interview-ready.
         </p>
-        <TopicSection topic={TCSC} />
         <TopicSection topic={STL} />
+        <TopicSection topic={TCSC} />
         <TopicSection topic={arrayTopic} />
         <TopicSection topic={stringTopic} />
         <TopicSection topic={TWO_D_ARRAY} />
