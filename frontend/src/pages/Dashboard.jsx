@@ -129,6 +129,22 @@ const Dashboard = () => {
               →
             </span>
           </button>
+           {/* join test button */}
+          {/* <button
+                onClick={() => navigate("/createtest")}
+                className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-purple-500/10 via-purple-400/5 to-transparent border border-purple-500/30 rounded-lg px-3 py-2 text-xs text-purple-300 hover:text-white hover:border-purple-400 hover:shadow-[0_0_12px_rgba(147,51,234,0.35)] transition-all duration-300 group mt-2"
+                >
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400 group-hover:scale-110 transition">
+                  📝
+                  </span>
+                  <span className="font-medium">Create Test</span>
+                </div>
+
+                <span className="text-[10px] text-purple-400 group-hover:translate-x-1 transition">
+                  →
+                </span>
+                </button> */}
           <button
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")

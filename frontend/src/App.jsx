@@ -12,6 +12,7 @@ import SCPractice from "./pages/SCPractice";
 import Containers from "./pages/Containers"; // ✅ ADD THIS
 import InbuiltFunctions from "./pages/InbuiltFunctions";
 import DsaApproach from "./pages/Dsa-approach";
+import CreateTest from "./pages/Createtest";
 
 function App() {
   return (
@@ -131,6 +132,15 @@ function App() {
         element={
           <PrivateRoute>
             <DsaApproach/>
+          </PrivateRoute>
+        }
+      />
+      
+      <Route
+        path="/createtest"
+        element={
+          <PrivateRoute>
+            <CreateTest/>
           </PrivateRoute>
         }
       />
