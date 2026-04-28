@@ -9,32 +9,33 @@ export const ProgressProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        setProgress({});
-        setLoading(false);
-        return;
-      }
+  const unsubscribe = auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      setProgress({});
+      setLoading(false);
+      return;
+    }
 
-      try {
-        const token = await user.getIdToken();
+    try {
+      // ✅ FORCE fresh token
+      const token = await user.getIdToken(true);
 
-        const res = await API.get("/api/user/progress", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+      const res = await API.get("/api/user/progress", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        setProgress(res.data || {});
-      } catch (err) {
-        console.log(err);
-      } finally {
-        setLoading(false);
-      }
-    });
+      setProgress(res.data || {});
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  });
 
-    return () => unsubscribe();
-  }, []);
+  return () => unsubscribe();
+}, []);
 
   return (
     <ProgressContext.Provider value={{ progress, setProgress, loading }}>
