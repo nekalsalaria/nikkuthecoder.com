@@ -13,6 +13,7 @@ import STACK_QUEUE from "../topics/stack&queue";
 import LINKED_LIST from "../topics/linkedlist";
 import TREE from "../topics/tree";
 import GRAPH from "../topics/graph";
+import API from "../utils/api";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -20,19 +21,20 @@ const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [totalUsers, setTotalUsers] = useState(0);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/total-users");
-        const data = await res.json();
-        setTotalUsers(data.totalUsers);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+ useEffect(() => {
+  console.log("API URL:", import.meta.env.VITE_API_URL);
 
-    fetchUsers();
-  }, []);
+  const fetchUsers = async () => {
+    try {
+      const res = await API.get("/api/user/total-users");
+      setTotalUsers(res.data.totalUsers);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  fetchUsers();
+}, []);
   return (
     <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
       {/* 🔥 FIXED SIDEBAR */}
@@ -129,7 +131,7 @@ const Dashboard = () => {
               →
             </span>
           </button>
-           {/* join test button */}
+          {/* join test button */}
           {/* <button
                 onClick={() => navigate("/createtest")}
                 className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-purple-500/10 via-purple-400/5 to-transparent border border-purple-500/30 rounded-lg px-3 py-2 text-xs text-purple-300 hover:text-white hover:border-purple-400 hover:shadow-[0_0_12px_rgba(147,51,234,0.35)] transition-all duration-300 group mt-2"
@@ -274,11 +276,11 @@ const Dashboard = () => {
         <TopicSection topic={stringTopic} />
         <TopicSection topic={TWO_D_ARRAY} />
         <TopicSection topic={Math} />
-        <TopicSection topic={RECURSION}/>
-        <TopicSection topic={STACK_QUEUE}/>
-        <TopicSection topic={LINKED_LIST}/>
-        <TopicSection topic={TREE}/>
-        <TopicSection topic={GRAPH}/>
+        <TopicSection topic={RECURSION} />
+        <TopicSection topic={STACK_QUEUE} />
+        <TopicSection topic={LINKED_LIST} />
+        <TopicSection topic={TREE} />
+        <TopicSection topic={GRAPH} />
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 const express = require("express");
+require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 
-require("dotenv").config();
+
 
 const app = express();
 app.use((req, res, next) => {
@@ -15,7 +16,11 @@ app.use((req, res, next) => {
 });
 // Middleware
 app.use(cors({
-  origin: "*",
+  origin: [
+    "http://localhost:5173",
+    "https://nikkuthecoder-com-2.onrender.com"
+  ],
+  credentials: true,
 }));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
