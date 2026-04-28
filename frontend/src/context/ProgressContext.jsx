@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import axios from "axios";
 import { auth } from "../firebase";
+import API from "../utils/api"; // ✅ use API
 
 const ProgressContext = createContext();
 
@@ -18,14 +18,11 @@ export const ProgressProvider = ({ children }) => {
       try {
         const token = await user.getIdToken();
 
-        const res = await axios.get(
-          "http://localhost:5000/api/user/progress",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const res = await API.get("/api/user/progress", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         setProgress(res.data || {});
       } catch (err) {

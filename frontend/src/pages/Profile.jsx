@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 import topics from "../topics";
-// eslint-disable-next-line no-unused-vars
-import axios from "axios";
 import { useProgress } from "../context/ProgressContext";
 
 const getColor = (topic) => {
@@ -30,7 +28,6 @@ const Profile = () => {
       await signOut(auth);
       localStorage.clear();
       navigate("/");
-      localStorage.removeItem("token");
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +78,6 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white px-6 py-8">
-      {/* TOP BAR */}
       <div className="flex justify-between items-center mb-10">
         <button
           onClick={() => navigate("/dashboard")}
@@ -98,16 +94,11 @@ const Profile = () => {
         </button>
       </div>
 
-      {/* PROFILE */}
       <div className="flex items-center gap-5 mb-10">
-        {/* Avatar */}
-        <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600">
-          <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 bg-linear-to-br from-green-400 to-green-600 flex items-center justify-center text-black text-lg">
-            😎
-          </div>
+        <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-600 bg-linear-to-br from-green-400 to-green-600 flex items-center justify-center text-black text-lg">
+          😎
         </div>
 
-        {/* User Info */}
         <div>
           <h2 className="text-lg font-semibold">
             {user?.displayName || "User"}
@@ -116,7 +107,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* OVERALL */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-10">
         <div className="bg-[#0b0f19] p-4 rounded-lg border border-gray-800">
           <p className="text-xs text-gray-400">Solved</p>
@@ -134,7 +124,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* TOPICS */}
       <div className="space-y-4">
         <h3 className="text-sm text-gray-500 uppercase">Topics Progress</h3>
 

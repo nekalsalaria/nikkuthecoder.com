@@ -1,8 +1,7 @@
-/* eslint-disable no-undef */
 import { useState, useEffect, useRef } from "react";
-import axios from "axios";
 import { auth } from "../firebase";
 import { useProgress } from "../context/ProgressContext";
+import API from "../utils/api"; // ✅ use API
 
 const QuestionRow = ({ q, isChecked, onToggle }) => {
   const { progress, setProgress } = useProgress();
@@ -13,15 +12,14 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
 
   const debounceRef = useRef(null);
 
-  // ✅ LOAD NOTES + REVISION FROM BACKEND
+  // ✅ LOAD NOTES + REVISION
   useEffect(() => {
     const fetchData = async () => {
       try {
         const token = await auth.currentUser.getIdToken();
 
-        // NOTES
-        const notesRes = await axios.get(
-          `http://localhost:5000/api/user/notes/${auth.currentUser.uid}`,
+        const notesRes = await API.get(
+          `/api/user/notes/${auth.currentUser.uid}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -29,9 +27,8 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
 
         setText(notesRes.data[q.id] || "");
 
-        // REVISION
-        const revRes = await axios.get(
-          `http://localhost:5000/api/user/revision/${auth.currentUser.uid}`,
+        const revRes = await API.get(
+          `/api/user/revision/${auth.currentUser.uid}`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -46,7 +43,7 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
     fetchData();
   }, [q.id]);
 
-  // ✅ PROGRESS (UNCHANGED)
+  // ✅ PROGRESS
   const handleCheck = () => {
     const updated = { ...progress, [q.id]: !isChecked };
 
@@ -61,8 +58,8 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
       try {
         const token = await auth.currentUser.getIdToken();
 
-        await axios.post(
-          "http://localhost:5000/api/user/progress",
+        await API.post(
+          "/api/user/progress",
           { progress: updated },
           {
             headers: {
@@ -74,19 +71,15 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
         console.log(err);
       }
     }, 500);
-
-    // if (!isChecked) {
-    //   markToday();
-    // }
   };
 
-  // ✅ SAVE NOTES (BACKEND)
+  // ✅ SAVE NOTES
   const handleSaveNotes = async () => {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await axios.get(
-        `http://localhost:5000/api/user/notes/${auth.currentUser.uid}`,
+      const res = await API.get(
+        `/api/user/notes/${auth.currentUser.uid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -94,8 +87,8 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
 
       const updated = { ...res.data, [q.id]: text };
 
-      await axios.post(
-        "http://localhost:5000/api/user/notes",
+      await API.post(
+        "/api/user/notes",
         {
           userId: auth.currentUser.uid,
           notes: updated,
@@ -111,13 +104,13 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
     }
   };
 
-  // ✅ SAVE REVISION (BACKEND)
+  // ✅ SAVE REVISION
   const handleStar = async () => {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await axios.get(
-        `http://localhost:5000/api/user/revision/${auth.currentUser.uid}`,
+      const res = await API.get(
+        `/api/user/revision/${auth.currentUser.uid}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -128,8 +121,8 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
         [q.id]: !isStarred,
       };
 
-      await axios.post(
-        "http://localhost:5000/api/user/revision",
+      await API.post(
+        "/api/user/revision",
         {
           userId: auth.currentUser.uid,
           revision: updated,
@@ -148,8 +141,6 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
   return (
     <>
       <div className="grid grid-cols-[40px_2fr_1fr_1fr_1fr_1fr] items-center text-sm py-3 px-4 border border-gray-800 rounded-lg bg-[#0f172a]">
-        
-        {/* Checkbox */}
         <input
           type="checkbox"
           checked={isChecked}
@@ -157,12 +148,10 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           className="w-4 h-4 accent-green-500 cursor-pointer"
         />
 
-        {/* Title */}
         <p className={`${isChecked ? "line-through text-gray-500" : "text-gray-200"}`}>
           {q.title}
         </p>
 
-        {/* Link */}
         <a
           href={q.link}
           target="_blank"
@@ -172,31 +161,27 @@ const QuestionRow = ({ q, isChecked, onToggle }) => {
           Solve
         </a>
 
-        {/* Notes */}
         <button
           onClick={() => setOpenNotes(true)}
-          className="text-gray-400 hover:text-green-400 cursor-pointer "
+          className="text-gray-400 hover:text-green-400 cursor-pointer"
         >
           📝
         </button>
 
-        {/* Revision */}
         <button
           onClick={handleStar}
           className={`cursor-pointer text-lg ${
             isStarred
               ? "text-yellow-400"
-              : "text-gray-500 hover:text-yellow-400 cursor-pointer"
+              : "text-gray-500 hover:text-yellow-400"
           }`}
         >
           {isStarred ? "★" : "☆"}
         </button>
 
-        {/* Difficulty */}
-        <span className="text-xs text-green-400 cursor-pointer">{q.difficulty}</span>
+        <span className="text-xs text-green-400">{q.difficulty}</span>
       </div>
 
-      {/* NOTES MODAL */}
       {openNotes && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
           <div className="bg-[#0b0f19] border border-gray-800 rounded-xl p-5 w-100">
