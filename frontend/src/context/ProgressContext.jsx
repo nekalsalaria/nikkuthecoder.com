@@ -11,6 +11,7 @@ export const ProgressProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (!user) {
+        setProgress({});
         setLoading(false);
         return;
       }
