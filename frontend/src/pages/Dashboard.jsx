@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import stringTopic from "../topics/string";
 import STL from "../topics/stl";
 import TCSC from "../topics/tcsc";
-import Math from "../topics/MATH";
+import Math from "../topics/math";
 import TWO_D_ARRAY from "../topics/2darray";
 import { useEffect } from "react";
 import RECURSION from "../topics/recursion";
