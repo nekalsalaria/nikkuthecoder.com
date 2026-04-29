@@ -1,6 +1,6 @@
 # 🚀 NIKKUtheCoder.com
 
-A full-stack MERN platform designed to help users build a strong **Data Structures & Algorithms (DSA)** foundation with structured learning, progress tracking, and real-world problem-solving.
+A full-stack web platform designed to help users build a strong **Data Structures & Algorithms (DSA)** foundation through structured learning, progress tracking, and consistent problem-solving.
 
 ---
 
@@ -14,16 +14,16 @@ A full-stack MERN platform designed to help users build a strong **Data Structur
 
 * 🔐 **Google Authentication (Firebase)**
 * 📊 **User Progress Tracking**
-* 📚 **Structured DSA Topics**
+* 📚 **Structured DSA Roadmap**
 
   * Arrays, Strings, STL
   * Recursion, Trees, Graphs
   * Stack & Queue, Linked List
 * 📝 **Notes & Revision System**
-* 👥 **Total Users Count (Live)**
+* 👥 **Live User Count**
 * 💻 **Responsive UI (React + Tailwind)**
-* ⚡ **Fast API with Node.js & Express**
-* 🗄️ **MongoDB Database Integration**
+* ⚡ **Optimized Backend APIs**
+* 🗄️ **Database Integration with MongoDB**
 
 ---
 
@@ -59,28 +59,30 @@ A full-stack MERN platform designed to help users build a strong **Data Structur
 
 ```
 project-root/
-│
+
 ├── frontend/
 │   ├── src/
 │   ├── components/
 │   ├── pages/
 │   └── utils/api.js
-│
+
 ├── backend/
 │   ├── routes/
 │   ├── models/
 │   ├── middleware/
 │   └── server.js
-│
+
 └── README.md
 ```
+
 ---
+
 ## 📈 Future Improvements
 
 * 🧠 AI-based problem recommendations
 * 🏆 Leaderboard system
 * 📱 Mobile app version
-* 🧪 Online code editor & judge
+* 🧪 Integrated code editor & judge
 
 ---
 
@@ -88,5 +90,3 @@ project-root/
 
 **Nekal Singh**
 🔗 https://www.linkedin.com/in/nekalsingh/
-
----
