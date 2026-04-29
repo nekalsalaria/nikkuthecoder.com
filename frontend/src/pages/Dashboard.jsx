@@ -80,7 +80,7 @@ const Dashboard = () => {
                 {user?.email}
               </p>
 
-              <p className="text-gray-500 text-[10px]">Your Profile</p>
+              <p className="text-green-400 cursor-pointer underline text-[12px]">Your Profile</p>
             </div>
           </div>
 

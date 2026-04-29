@@ -30,6 +30,9 @@ app.get("/", (req, res) => {
   res.send("Backend API running...");
 });
 
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
 
 // DB connection
 mongoose.connect(process.env.MONGO_URI)
