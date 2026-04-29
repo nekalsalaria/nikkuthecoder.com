@@ -85,8 +85,8 @@ const Dashboard = () => {
           </div>
 
           {/* Brand */}
-          <h1 className="text-green-400 text-xl font-bold mb-4 tracking-wide">
-            NIKKUtheCoder.com
+          <h1 className="text-green-400 text-xs underline font-bold mb-4 tracking-wide">
+            NIKKUtheCoder Coding Platform
           </h1>
 
           {/* Useful Links Heading */}
