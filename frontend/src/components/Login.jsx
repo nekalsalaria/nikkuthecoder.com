@@ -1,22 +1,24 @@
+import { useState } from "react";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import API from "../utils/api"; // ✅ use API instead of axios
+import API from "../utils/api";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false); // ✅ loader state
 
   const handleLogin = async () => {
     try {
+      setLoading(true); // ✅ start loader
+
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      // save locally
       localStorage.setItem("user", JSON.stringify(user));
 
-      // ✅ FIXED API CALL
       await API.post("/api/auth/google-login", {
         name: user.displayName,
         email: user.email,
@@ -24,11 +26,27 @@ const Login = () => {
       });
 
       localStorage.setItem("token", "user_logged_in");
+
       navigate("/dashboard");
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false); // ✅ stop loader
     }
   };
+
+  // ✅ FULL SCREEN LOADER UI
+  if (loading) {
+    return (
+      <div className="h-screen w-full bg-black flex items-center justify-center">
+        <motion.div
+          animate={{ rotate: 360 }}
+          transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+          className="w-16 h-16 border-4 border-green-500 border-t-transparent rounded-full"
+        />
+      </div>
+    );
+  }
 
   return (
     <div className="h-screen w-full bg-black text-white flex overflow-hidden">
@@ -87,7 +105,7 @@ const Login = () => {
           <div className="mb-2 flex justify-center items-center">
             <img
               src="/logo.png"
-              alt="NIKKUtheCoder Logo"
+              alt="logo"
               className="w-40 sm:w-52 md:w-60 h-auto object-contain drop-shadow-xl"
             />
           </div>
@@ -104,6 +122,7 @@ const Login = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.96 }}
             onClick={handleLogin}
+            disabled={loading}
             className="w-full flex items-center justify-center gap-3 bg-linear-to-r from-green-400 to-green-600 text-black font-semibold py-3 rounded-xl shadow-lg hover:shadow-green-500/30 transition cursor-pointer"
           >
             Continue with Google
