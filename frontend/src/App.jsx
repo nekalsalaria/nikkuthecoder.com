@@ -17,6 +17,7 @@ import STAR_PATTERNS from "./pages/Starpattern";
 import StarPatternPractice from "./pages/Starpatternpractice";
 import FUNCTION from "./pages/function";
 import FunctionPractice from "./pages/Functionpractice";
+import Createresume from "./pages/Createresume";
 
 function App() {
   return (
@@ -178,6 +179,15 @@ function App() {
         element={
           <PrivateRoute>
             <CreateTest/>
+          </PrivateRoute>
+        }
+      />
+      
+      <Route
+        path="/create-resume"
+        element={
+          <PrivateRoute>
+            <Createresume/>
           </PrivateRoute>
         }
       />

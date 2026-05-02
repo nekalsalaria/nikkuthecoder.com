@@ -60,40 +60,42 @@ export default function FunctionPage() {
   const t = topics[active];
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      background: "#080d18",
-      color: "#e2e8f0",
-      fontFamily: "'Sora', sans-serif",
-      padding: "20px"
-    }}>
+    <div style={styles.page}>
+      <div style={styles.container}>
 
-      <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+        {/* Top Bar */}
+        <div style={styles.topBar}>
+          <button
+            style={styles.backBtn}
+            onClick={() => navigate("/dashboard")}
+            onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
+            onMouseLeave={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.05)"}
+          >
+            ← Dashboard
+          </button>
 
-        <button
-          onClick={() => navigate("/dashboard")}
-          style={btn("#22c55e")}
-        >← Dashboard</button>
+          <span style={styles.stepText}>
+            Topic {active + 1} / {topics.length}
+          </span>
+        </div>
 
-        <h1 style={{ marginTop: "20px" }}>Functions</h1>
-        <p style={{ color: "#64748b" }}>
-          Learn reusable code blocks — core of programming.
-        </p>
+        {/* Header */}
+        <div style={styles.header}>
+          <h1 style={styles.title}>Functions</h1>
+          <p style={styles.subtitle}>
+            Learn reusable code blocks — core of programming.
+          </p>
+        </div>
 
         {/* Tabs */}
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", margin: "20px 0" }}>
+        <div style={styles.tabs}>
           {topics.map((item, i) => (
             <button
               key={i}
               onClick={() => setActive(i)}
               style={{
-                padding: "8px 14px",
-                borderRadius: "8px",
-                border: i === active ? "1px solid #22c55e" : "1px solid rgba(255,255,255,0.1)",
-                background: i === active ? "rgba(34,197,94,0.1)" : "transparent",
-                color: i === active ? "#22c55e" : "#64748b",
-                cursor: "pointer",
-                fontWeight: "600"
+                ...styles.tabBtn,
+                ...(i === active ? styles.activeTab : {})
               }}
             >
               {item.name}
@@ -101,24 +103,21 @@ export default function FunctionPage() {
           ))}
         </div>
 
-        {/* Content */}
-        <div style={{
-          background: "rgba(255,255,255,0.03)",
-          border: "1px solid rgba(255,255,255,0.08)",
-          padding: "18px",
-          borderRadius: "12px",
-          marginBottom: "12px"
-        }}>
-          <p>{t.desc}</p>
+        {/* Content Card */}
+        <div style={styles.card}>
+          <p style={styles.desc}>{t.desc}</p>
+
+          <div style={styles.codeBox}>
+            <pre style={styles.code}>{t.code}</pre>
+          </div>
         </div>
 
-        <pre style={codeStyle}>
-{t.code}
-        </pre>
-
+        {/* CTA */}
         <button
-          onClick={() => navigate("/functions/practice")}
-          style={btn("#3b82f6")}
+          onClick={() => navigate("/function-practice")}
+          style={styles.primaryBtn}
+          onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
+          onMouseLeave={(e) => e.currentTarget.style.transform = "scale(1)"}
         >
           Practice Functions →
         </button>
@@ -128,24 +127,123 @@ export default function FunctionPage() {
   );
 }
 
-const btn = (bg) => ({
-  background: bg,
-  border: "none",
-  color: "#fff",
-  padding: "10px 18px",
-  borderRadius: "8px",
-  cursor: "pointer",
-  marginTop: "10px",
-  fontWeight: "600"
-});
+/* ---------- STYLES ---------- */
 
-const codeStyle = {
-  background: "#060b16",
-  padding: "16px",
-  borderRadius: "10px",
-  marginBottom: "20px",
-  fontFamily: "monospace",
-  fontSize: "13px",
-  color: "#7dd3fc",
-  whiteSpace: "pre-wrap"
+const styles = {
+  page: {
+    minHeight: "100vh",
+    background: "radial-gradient(circle at top, #0f172a, #020617)",
+    color: "#e2e8f0",
+    fontFamily: "Inter, sans-serif",
+    padding: "24px",
+  },
+
+  container: {
+    maxWidth: "760px",
+    margin: "0 auto",
+  },
+
+  topBar: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "16px",
+    padding: "10px 14px",
+    borderRadius: "12px",
+    background: "rgba(255,255,255,0.03)",
+    border: "1px solid rgba(255,255,255,0.06)",
+  },
+
+  backBtn: {
+    background: "rgba(255,255,255,0.05)",
+    border: "1px solid rgba(255,255,255,0.1)",
+    color: "#e2e8f0",
+    padding: "6px 12px",
+    borderRadius: "8px",
+    cursor: "pointer",
+    fontSize: "13px",
+    transition: "0.2s",
+  },
+
+  stepText: {
+    fontSize: "13px",
+    color: "#94a3b8",
+  },
+
+  header: {
+    marginBottom: "20px",
+  },
+
+  title: {
+    fontSize: "30px",
+    fontWeight: "700",
+  },
+
+  subtitle: {
+    color: "#64748b",
+    marginTop: "6px",
+  },
+
+  tabs: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: "8px",
+    marginBottom: "20px",
+  },
+
+  tabBtn: {
+    padding: "8px 14px",
+    borderRadius: "8px",
+    border: "1px solid rgba(255,255,255,0.1)",
+    background: "transparent",
+    color: "#64748b",
+    cursor: "pointer",
+    fontSize: "13px",
+    transition: "0.2s",
+  },
+
+  activeTab: {
+    border: "1px solid #22c55e",
+    background: "rgba(34,197,94,0.1)",
+    color: "#22c55e",
+    fontWeight: "600",
+  },
+
+  card: {
+    background: "rgba(255,255,255,0.04)",
+    border: "1px solid rgba(255,255,255,0.08)",
+    borderRadius: "16px",
+    padding: "20px",
+    marginBottom: "20px",
+  },
+
+  desc: {
+    marginBottom: "12px",
+    color: "#cbd5f5",
+  },
+
+  codeBox: {
+    background: "#020617",
+    borderRadius: "12px",
+    border: "1px solid rgba(255,255,255,0.08)",
+    padding: "14px",
+  },
+
+  code: {
+    fontFamily: "monospace",
+    fontSize: "13px",
+    color: "#38bdf8",
+    whiteSpace: "pre-wrap",
+  },
+
+  primaryBtn: {
+    background: "linear-gradient(135deg, #3b82f6, #2563eb)",
+    border: "none",
+    color: "#fff",
+    padding: "12px 20px",
+    borderRadius: "12px",
+    cursor: "pointer",
+    fontWeight: "600",
+    transition: "0.2s",
+  },
 };

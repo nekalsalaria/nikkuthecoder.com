@@ -101,6 +101,24 @@ const Dashboard = () => {
           </div>
 
           {/* Single CTA Button */}
+           {/* <button
+            onClick={() => navigate("/create-resume")}
+            className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
+          >
+            <div className="flex items-center gap-2 cursor-pointer">
+              <span className="text-green-400 group-hover:scale-110 transition">
+                📄
+              </span>
+              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
+                Create Your Resume
+              </span>
+            </div>
+
+            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button> */}
+
           <button
             onClick={() => navigate("/dsa-approach")}
             className="w-full cursor-pointer flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
@@ -273,8 +291,8 @@ const Dashboard = () => {
           Solve problems step-by-step from Basics to Medium. Build consistency
           and become interview-ready.
         </p>
-        {/* <TopicSection topic={STAR_PATTERNS} /> */}
-        {/* <TopicSection topic ={FUNCTION}/> */}
+        <TopicSection topic={STAR_PATTERNS} /> 
+        <TopicSection topic ={FUNCTION}/>
         <TopicSection topic={STL} />
         <TopicSection topic={TCSC} />
         <TopicSection topic={arrayTopic} />
