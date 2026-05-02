@@ -13,6 +13,10 @@ import Containers from "./pages/Containers"; // ✅ ADD THIS
 import InbuiltFunctions from "./pages/InbuiltFunctions";
 import DsaApproach from "./pages/Dsa-approach";
 import CreateTest from "./pages/Createtest";
+import STAR_PATTERNS from "./pages/Starpattern";
+import StarPatternPractice from "./pages/Starpatternpractice";
+import FUNCTION from "./pages/function";
+import FunctionPractice from "./pages/Functionpractice";
 
 function App() {
   return (
@@ -33,6 +37,39 @@ function App() {
         element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/star-patterns"
+        element={
+          <PrivateRoute>
+            <STAR_PATTERNS />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/star-patterns-practice"
+        element={
+          <PrivateRoute>
+            <StarPatternPractice />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/function"
+        element={
+          <PrivateRoute>
+            <FUNCTION />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/function-practice"
+        element={
+          <PrivateRoute>
+            <FunctionPractice />
           </PrivateRoute>
         }
       />

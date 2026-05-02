@@ -14,6 +14,9 @@ import LINKED_LIST from "../topics/linkedlist";
 import TREE from "../topics/tree";
 import GRAPH from "../topics/graph";
 import API from "../utils/api";
+import StarPattern from "./Starpattern";
+import STAR_PATTERNS from "../topics/starpattern";
+import FUNCTION from "../topics/function";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -270,6 +273,8 @@ const Dashboard = () => {
           Solve problems step-by-step from Basics to Medium. Build consistency
           and become interview-ready.
         </p>
+        {/* <TopicSection topic={STAR_PATTERNS} /> */}
+        {/* <TopicSection topic ={FUNCTION}/> */}
         <TopicSection topic={STL} />
         <TopicSection topic={TCSC} />
         <TopicSection topic={arrayTopic} />
