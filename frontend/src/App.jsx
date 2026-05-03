@@ -19,11 +19,11 @@ import FUNCTION from "./pages/Function";
 import FunctionPractice from "./pages/Functionpractice";
 import Ifelse from "./pages/Ifelse";
 import IfelsePractice from "./pages/Ifelsepractice";
-import FOR_LOOP from "./pages/forloop";
+import ForLoop from "./pages/Forloop";
 import ForLoopPractice from "./pages/Forlooppractice";
-import WHILE_LOOP from "./pages/whileloop";
+import WhileLoop from "./pages/Whileloop";
 import WhileLoopPractice from "./pages/Whilelooppractice";
-import LOGICAL_QUESTIONS from "./pages/logicalquestions";
+import Logicalquestions from "./pages/Logicalquestions";
 import LogicalquestionsPractice from "./pages/Logicalquestionspractice";
 
 function App() {
