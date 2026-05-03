@@ -77,7 +77,7 @@ function App() {
         path="/forloop"
         element={
           <PrivateRoute>
-            <FOR_LOOP/>
+            <ForLoop/>
           </PrivateRoute>
         }
       />
@@ -93,7 +93,7 @@ function App() {
         path="/whileloop"
         element={
           <PrivateRoute>
-            <WHILE_LOOP/>
+            <WhileLoop/>
           </PrivateRoute>
         }
       />
@@ -109,7 +109,7 @@ function App() {
         path="/logical"
         element={
           <PrivateRoute>
-            <LOGICAL_QUESTIONS/>
+            <Logicalquestions/>
           </PrivateRoute>
         }
       />
