@@ -17,6 +17,11 @@ import API from "../utils/api";
 import StarPattern from "./Starpattern";
 import STAR_PATTERNS from "../topics/starpattern";
 import FUNCTION from "../topics/function";
+import Ifelse from "./Ifelse";
+import IFELSE from "../topics/ifelse";
+import FOR_LOOP from "../topics/forloop";
+import WHILE_LOOP from "../topics/whileloop";
+import LOGICAL_QUESTIONS from "../topics/logicalquestions";
 
 const Dashboard = () => {
   const [openQR, setOpenQR] = useState(false);
@@ -291,6 +296,10 @@ const Dashboard = () => {
           Solve problems step-by-step from Basics to Medium. Build consistency
           and become interview-ready.
         </p>
+        <TopicSection topic={IFELSE} />
+        <TopicSection topic={FOR_LOOP}/>
+        <TopicSection topic={WHILE_LOOP}/>
+        <TopicSection topic={LOGICAL_QUESTIONS}/>
         <TopicSection topic={STAR_PATTERNS} /> 
         <TopicSection topic ={FUNCTION}/>
         <TopicSection topic={STL} />

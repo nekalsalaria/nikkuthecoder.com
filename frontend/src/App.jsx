@@ -17,6 +17,14 @@ import STAR_PATTERNS from "./pages/Starpattern";
 import StarPatternPractice from "./pages/Starpatternpractice";
 import FUNCTION from "./pages/Function";
 import FunctionPractice from "./pages/Functionpractice";
+import Ifelse from "./pages/Ifelse";
+import IfelsePractice from "./pages/Ifelsepractice";
+import FOR_LOOP from "./pages/forloop";
+import ForLoopPractice from "./pages/Forlooppractice";
+import WHILE_LOOP from "./pages/whileloop";
+import WhileLoopPractice from "./pages/Whilelooppractice";
+import LOGICAL_QUESTIONS from "./pages/logicalquestions";
+import LogicalquestionsPractice from "./pages/Logicalquestionspractice";
 
 function App() {
   return (
@@ -46,6 +54,70 @@ function App() {
         element={
           <PrivateRoute>
             <STAR_PATTERNS />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/ifelse"
+        element={
+          <PrivateRoute>
+            <Ifelse />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/ifelse/practice"
+        element={
+          <PrivateRoute>
+            <IfelsePractice/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/forloop"
+        element={
+          <PrivateRoute>
+            <FOR_LOOP/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/forloop/practice"
+        element={
+          <PrivateRoute>
+            <ForLoopPractice/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/whileloop"
+        element={
+          <PrivateRoute>
+            <WHILE_LOOP/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/whileloop/practice"
+        element={
+          <PrivateRoute>
+            <WhileLoopPractice/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/logical"
+        element={
+          <PrivateRoute>
+            <LOGICAL_QUESTIONS/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/logical/practice"
+        element={
+          <PrivateRoute>
+            <LogicalquestionsPractice/>
           </PrivateRoute>
         }
       />

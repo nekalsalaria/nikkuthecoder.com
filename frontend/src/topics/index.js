@@ -11,6 +11,10 @@ import TREE from "./tree";
 import GRAPH from "./graph";
 import STAR_PATTERN from "./starpattern";
 import FUNCTION from "./function";
-const topics = [STL, TCSC, array, string, Math, TWO_D_ARRAY, RECURSION,  STACK_QUEUE, LINKED_LIST, TREE, GRAPH, STAR_PATTERN, FUNCTION];
+import IFELSE from "./ifelse";
+import FOR_LOOP from "./forloop";
+import WHILE_LOOP from "./whileloop";
+import LOGICAL_QUESTIONS from "./logicalquestions";
+const topics = [STL, TCSC, array, string, Math, TWO_D_ARRAY, RECURSION,  STACK_QUEUE, LINKED_LIST, TREE, GRAPH, STAR_PATTERN, FUNCTION, IFELSE, FOR_LOOP, LOGICAL_QUESTIONS];
 
 export default topics;
