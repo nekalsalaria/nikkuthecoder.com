@@ -1,4 +1,4 @@
-# 🚀 NIKKUtheCoder.com
+# 🚀 NIKKUtheCoder | Coding Platform
 
 A full-stack web platform designed to help users build a strong **Data Structures & Algorithms (DSA)** foundation through structured learning, progress tracking, and consistent problem-solving.
 
