@@ -65,15 +65,20 @@ const Login = () => {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-gray-400 mt-6 text-lg max-w-lg"
-        >
-          NIKKUtheCoder.com helps you learn Data Structures & Algorithms with a
-          clear roadmap, real interview problems, and progress tracking — all
-          completely free.
-        </motion.p>
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  className="mt-6 text-lg max-w-lg text-gray-300 leading-relaxed"
+>
+  <span className="bg-linear-to-r from-green-400 to-blue-500 bg-clip-text text-transparent font-semibold">
+    NIKKUtheCoder
+  </span>{" "}
+  helps you master{" "}
+  <span className="text-white font-medium">
+    Data Structures & Algorithms
+  </span>{" "}
+  with a structured roadmap, real interview problems, and progress tracking — all completely free.
+</motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -110,8 +115,11 @@ const Login = () => {
             />
           </div>
 
-          <h2 className="text-2xl font-bold text-center">
-            Welcome to <span className="text-green-400">NIKKUtheCoder.com</span>
+          <h2 className="text-xl  font-bold text-center">
+            Welcome to{" "}
+            <span className="text-green-400">
+              NIKKUtheCoder Coding Platform
+            </span>
           </h2>
 
           <p className="text-gray-400 text-sm text-center mt-2 mb-8">
@@ -125,6 +133,30 @@ const Login = () => {
             disabled={loading}
             className="w-full flex items-center justify-center gap-3 bg-linear-to-r from-green-400 to-green-600 text-black font-semibold py-3 rounded-xl shadow-lg hover:shadow-green-500/30 transition cursor-pointer"
           >
+            <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white">
+              <svg
+                viewBox="0 0 533.5 544.3"
+                className="w-4 h-4"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M533.5 278.4c0-18.3-1.6-36-4.7-53.1H272v100.7h146.9c-6.3 34-25.4 62.8-54.3 82.1v68.1h87.8c51.4-47.4 81.1-117.1 81.1-197.8z"
+                  fill="#4285F4"
+                />
+                <path
+                  d="M272 544.3c73.5 0 135.3-24.5 180.4-66.6l-87.8-68.1c-24.4 16.4-55.6 26-92.6 26-71.2 0-131.5-48.1-153.1-112.9H28.5v70.9C73.5 482.8 167.8 544.3 272 544.3z"
+                  fill="#34A853"
+                />
+                <path
+                  d="M118.9 324.7c-10.8-32.4-10.8-67.4 0-99.8V154c-44.6 27.8-74.1 70.6-74.1 122.9s29.5 95.1 74.1 122.9l93.3-75.1z"
+                  fill="#FBBC05"
+                />
+                <path
+                  d="M272 107.7c39.7 0 75.3 13.6 103.4 40.3l77.6-77.6C405 24 344.9 0 272 0 167.8 0 73.5 61.5 28.5 154l93.3 70.9C140.5 155.8 200.8 107.7 272 107.7z"
+                  fill="#EA4335"
+                />
+              </svg>
+            </span>
             Continue with Google
           </motion.button>
 
