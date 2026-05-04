@@ -106,23 +106,6 @@ const Dashboard = () => {
           </div>
 
           {/* Single CTA Button */}
-           {/* <button
-            onClick={() => navigate("/create-resume")}
-            className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
-          >
-            <div className="flex items-center gap-2 cursor-pointer">
-              <span className="text-green-400 group-hover:scale-110 transition">
-                📄
-              </span>
-              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
-                Create Your Resume
-              </span>
-            </div>
-
-            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
-              →
-            </span>
-          </button> */}
 
           <button
             onClick={() => navigate("/dsa-approach")}
@@ -144,7 +127,7 @@ const Dashboard = () => {
           {/* CS Subjects Button */}
           <button
             onClick={() => navigate("/cs-subjects")}
-            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
+            className="w-full flex cursor-pointer items-center justify-between mb-2 bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
           >
             <div className="flex items-center gap-2">
               <span className="text-blue-400 group-hover:scale-110 transition">
@@ -157,6 +140,25 @@ const Dashboard = () => {
               →
             </span>
           </button>
+
+           <button
+            onClick={() => navigate("/compiler")}
+            className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
+          >
+            <div className="flex items-center gap-2 cursor-pointer">
+              <span className="text-green-400 group-hover:scale-110 transition">
+                📄
+              </span>
+              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
+                Open Compiler 
+              </span>
+            </div>
+
+            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
+
           {/* join test button */}
           {/* <button
                 onClick={() => navigate("/createtest")}

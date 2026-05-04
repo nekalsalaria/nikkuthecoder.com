@@ -25,6 +25,7 @@ import WhileLoop from "./pages/Whileloop";
 import WhileLoopPractice from "./pages/Whilelooppractice";
 import Logicalquestions from "./pages/Logicalquestions";
 import LogicalquestionsPractice from "./pages/Logicalquestionspractice";
+import Compiler from "./pages/Compiler";
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
         element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/compiler"
+        element={
+          <PrivateRoute>
+            <Compiler />
           </PrivateRoute>
         }
       />
