@@ -143,18 +143,18 @@ const Dashboard = () => {
 
            <button
             onClick={() => navigate("/compiler")}
-            className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group"
+            className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-purple-500/10 via-purple-400/5 to-transparent border border-purple-500/30 rounded-lg px-3 py-2 text-xs text-purple-300 hover:text-white hover:border-purple-400 hover:shadow-[0_0_12px_rgba(147,51,234,0.35)] transition-all duration-300 group"
           >
             <div className="flex items-center gap-2 cursor-pointer">
-              <span className="text-green-400 group-hover:scale-110 transition">
+              <span className="text-purple-400 group-hover:scale-110 transition">
                 📄
               </span>
-              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
+              <span className="font-medium cursor-pointer group-hover:text-purple-400 transition">
                 Open Compiler 
               </span>
             </div>
 
-            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+            <span className="text-[10px] text-purple-400 group-hover:translate-x-1 transition">
               →
             </span>
           </button>
@@ -179,16 +179,16 @@ const Dashboard = () => {
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")
             }
-            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-green-500/10 via-green-400/5 to-transparent border border-green-500/30 rounded-lg px-3 py-2 text-xs text-green-300 hover:text-white hover:border-green-400 hover:shadow-[0_0_12px_rgba(34,197,94,0.35)] transition-all duration-300 group mt-2"
+            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
           >
             <div className="flex items-center gap-2">
-              <span className="text-green-400 group-hover:scale-110 transition">
+              <span className="text-blue-400 group-hover:scale-110 transition">
                 🔗
               </span>
               <span className="font-medium">SwapSkill Other Product</span>
             </div>
 
-            <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
+            <span className="text-[10px] text-blue-400 group-hover:translate-x-1 transition">
               →
             </span>
           </button>
