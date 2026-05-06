@@ -26,6 +26,7 @@ import WhileLoopPractice from "./pages/Whilelooppractice";
 import Logicalquestions from "./pages/Logicalquestions";
 import LogicalquestionsPractice from "./pages/Logicalquestionspractice";
 import Compiler from "./pages/Compiler";
+import CreateResume from "./pages/Createresume";
 
 function App() {
   return (
@@ -46,6 +47,14 @@ function App() {
         element={
           <PrivateRoute>
             <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/createresume"
+        element={
+          <PrivateRoute>
+            <CreateResume />
           </PrivateRoute>
         }
       />

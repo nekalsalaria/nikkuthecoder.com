@@ -29,20 +29,20 @@ const Dashboard = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [totalUsers, setTotalUsers] = useState(0);
 
- useEffect(() => {
-  console.log("API URL:", import.meta.env.VITE_API_URL);
+  useEffect(() => {
+    console.log("API URL:", import.meta.env.VITE_API_URL);
 
-  const fetchUsers = async () => {
-    try {
-      const res = await API.get("/api/user/total-users");
-      setTotalUsers(res.data.totalUsers);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    const fetchUsers = async () => {
+      try {
+        const res = await API.get("/api/user/total-users");
+        setTotalUsers(res.data.totalUsers);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  fetchUsers();
-}, []);
+    fetchUsers();
+  }, []);
   return (
     <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
       {/* 🔥 FIXED SIDEBAR */}
@@ -88,7 +88,9 @@ const Dashboard = () => {
                 {user?.email}
               </p>
 
-              <p className="text-green-400 cursor-pointer underline text-[12px]">Your Profile</p>
+              <p className="text-green-400 cursor-pointer underline text-[12px]">
+                Your Profile
+              </p>
             </div>
           </div>
 
@@ -141,7 +143,7 @@ const Dashboard = () => {
             </span>
           </button>
 
-           <button
+          <button
             onClick={() => navigate("/compiler")}
             className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-purple-500/10 via-purple-400/5 to-transparent border border-purple-500/30 rounded-lg px-3 py-2 text-xs text-purple-300 hover:text-white hover:border-purple-400 hover:shadow-[0_0_12px_rgba(147,51,234,0.35)] transition-all duration-300 group"
           >
@@ -150,7 +152,7 @@ const Dashboard = () => {
                 📄
               </span>
               <span className="font-medium cursor-pointer group-hover:text-purple-400 transition">
-                Open Compiler 
+                Open Compiler
               </span>
             </div>
 
@@ -175,6 +177,23 @@ const Dashboard = () => {
                   →
                 </span>
                 </button> */}
+
+          {/* create resume button */}
+          <button
+            onClick={() => navigate("/createresume")}
+            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-orange-500/10 via-orange-400/5 to-transparent border border-orange-500/30 rounded-lg px-3 py-2 text-xs text-orange-300 hover:text-white hover:border-orange-400 hover:shadow-[0_0_12px_rgba(234,179,8,0.35)] transition-all duration-300 group mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-orange-400 group-hover:scale-110 transition">
+                📝
+              </span>
+              <span className="font-medium">Create Resume</span>
+            </div>
+
+            <span className="text-[10px] text-orange-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
           <button
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")
@@ -299,11 +318,11 @@ const Dashboard = () => {
           and become interview-ready.
         </p>
         <TopicSection topic={IFELSE} />
-        <TopicSection topic={FOR_LOOP}/>
-        <TopicSection topic={WHILE_LOOP}/>
-        <TopicSection topic={LOGICAL_QUESTIONS}/>
-        <TopicSection topic={STAR_PATTERNS} /> 
-        <TopicSection topic ={FUNCTION}/>
+        <TopicSection topic={FOR_LOOP} />
+        <TopicSection topic={WHILE_LOOP} />
+        <TopicSection topic={LOGICAL_QUESTIONS} />
+        <TopicSection topic={STAR_PATTERNS} />
+        <TopicSection topic={FUNCTION} />
         <TopicSection topic={STL} />
         <TopicSection topic={TCSC} />
         <TopicSection topic={arrayTopic} />
