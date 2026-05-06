@@ -126,23 +126,24 @@ const Dashboard = () => {
               →
             </span>
           </button>
-          {/* CS Subjects Button */}
+           {/* create resume button */}
           <button
-            onClick={() => navigate("/cs-subjects")}
-            className="w-full flex cursor-pointer items-center justify-between mb-2 bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
+            onClick={() => navigate("/createresume")}
+            className="w-full mb-2 flex cursor-pointer items-center justify-between bg-linear-to-r from-orange-500/10 via-orange-400/5 to-transparent border border-orange-500/30 rounded-lg px-3 py-2 text-xs text-orange-300 hover:text-white hover:border-orange-400 hover:shadow-[0_0_12px_rgba(234,179,8,0.35)] transition-all duration-300 group mt-2"
           >
             <div className="flex items-center gap-2">
-              <span className="text-blue-400 group-hover:scale-110 transition">
-                📚
+              <span className="text-orange-400 group-hover:scale-110 transition">
+                📝
               </span>
-              <span className="font-medium">CS Subjects Links</span>
+              <span className="font-medium">Create Resume</span>
             </div>
 
-            <span className="text-[10px] text-blue-400 group-hover:translate-x-1 transition">
+            <span className="text-[10px] text-orange-400 group-hover:translate-x-1 transition">
               →
             </span>
           </button>
 
+          {/* open compiler */}
           <button
             onClick={() => navigate("/compiler")}
             className="w-full cursor-pointer mb-2 flex items-center justify-between bg-linear-to-r from-purple-500/10 via-purple-400/5 to-transparent border border-purple-500/30 rounded-lg px-3 py-2 text-xs text-purple-300 hover:text-white hover:border-purple-400 hover:shadow-[0_0_12px_rgba(147,51,234,0.35)] transition-all duration-300 group"
@@ -157,6 +158,22 @@ const Dashboard = () => {
             </div>
 
             <span className="text-[10px] text-purple-400 group-hover:translate-x-1 transition">
+              →
+            </span>
+          </button>
+          {/* CS Subjects Button */}
+          <button
+            onClick={() => navigate("/cs-subjects")}
+            className="w-full flex cursor-pointer items-center justify-between mb-2 bg-linear-to-r from-blue-500/10 via-blue-400/5 to-transparent border border-blue-500/30 rounded-lg px-3 py-2 text-xs text-blue-300 hover:text-white hover:border-blue-400 hover:shadow-[0_0_12px_rgba(59,130,246,0.35)] transition-all duration-300 group mt-2"
+          >
+            <div className="flex items-center gap-2">
+              <span className="text-blue-400 group-hover:scale-110 transition">
+                📚
+              </span>
+              <span className="font-medium">CS Subjects Links</span>
+            </div>
+
+            <span className="text-[10px] text-blue-400 group-hover:translate-x-1 transition">
               →
             </span>
           </button>
@@ -178,22 +195,7 @@ const Dashboard = () => {
                 </span>
                 </button> */}
 
-          {/* create resume button */}
-          <button
-            onClick={() => navigate("/createresume")}
-            className="w-full flex cursor-pointer items-center justify-between bg-linear-to-r from-orange-500/10 via-orange-400/5 to-transparent border border-orange-500/30 rounded-lg px-3 py-2 text-xs text-orange-300 hover:text-white hover:border-orange-400 hover:shadow-[0_0_12px_rgba(234,179,8,0.35)] transition-all duration-300 group mt-2"
-          >
-            <div className="flex items-center gap-2">
-              <span className="text-orange-400 group-hover:scale-110 transition">
-                📝
-              </span>
-              <span className="font-medium">Create Resume</span>
-            </div>
-
-            <span className="text-[10px] text-orange-400 group-hover:translate-x-1 transition">
-              →
-            </span>
-          </button>
+  
           <button
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")
