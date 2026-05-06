@@ -150,7 +150,7 @@ const Dashboard = () => {
           >
             <div className="flex items-center gap-2 cursor-pointer">
               <span className="text-purple-400 group-hover:scale-110 transition">
-                📄
+                💻
               </span>
               <span className="font-medium cursor-pointer group-hover:text-purple-400 transition">
                 Open Compiler
