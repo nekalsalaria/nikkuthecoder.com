@@ -44,7 +44,7 @@ const Dashboard = () => {
     fetchUsers();
   }, []);
   return (
-    <div className="min-h-screen bg-black text-white flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#0a0e1a] text-white flex flex-col lg:flex-row">
       {/* 🔥 FIXED SIDEBAR */}
       <div className="w-full lg:w-64 lg:h-screen lg:fixed lg:left-0 lg:top-0 bg-[#0b0f19] border-r border-gray-800 p-4 sm:p-6 flex flex-col justify-between">
         {/* TOP */}
@@ -52,10 +52,10 @@ const Dashboard = () => {
           {/* ✅ PROFILE (FIXED UI) */}
           <div
             onClick={() => navigate("/profile")}
-            className="flex items-center gap-3 mb-6 cursor-pointer hover:bg-[#111827] p-2 rounded-lg transition"
+            className="flex items-center gap-3 mb-5 cursor-pointer p-3 rounded-xl border border-white/5 bg-white/3 hover:bg-white/6 hover:border-white/10 transition-all duration-200 group"
           >
             {/* AVATAR */}
-            <div className="relative w-10 h-10">
+            <div className="relative shrink-0">
               {user?.photoURL ? (
                 <img
                   src={user.photoURL}
@@ -64,44 +64,66 @@ const Dashboard = () => {
                     e.target.style.display = "none";
                     e.target.nextSibling.style.display = "flex";
                   }}
-                  className="w-10 h-10 rounded-full object-cover"
+                  className="w-11 h-11 rounded-full object-cover border-[1.5px] border-white/15"
                 />
               ) : null}
 
-              {/* Fallback Emoji */}
+              {/* Fallback */}
               <div
-                className={`w-10 h-10 rounded-full bg-linear-to-br from-green-400 to-green-600 flex items-center justify-center text-black text-lg ${
+                className={`w-11 h-11 rounded-full bg-green-500/15 border border-green-500/30 items-center justify-center text-xl ${
                   user?.photoURL ? "hidden" : "flex"
                 }`}
               >
                 😎
               </div>
+
+              {/* Online dot */}
+              <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-[#0b0f19]" />
             </div>
 
             {/* TEXT */}
-            <div>
-              <p className="text-white text-sm font-semibold">
-                {user?.displayName || "User"}
+            <div className="flex-1 min-w-0">
+              <p className="text-white text-[13px] font-semibold truncate">
+                {user?.displayName || "Coder"}
               </p>
-
-              <p className="text-gray-400 text-xs truncate max-w-30 sm:max-w-40">
+              <p className="text-gray-500 text-[11px] truncate mt-0.5">
                 {user?.email}
               </p>
-
-              <p className="text-green-400 cursor-pointer underline text-[12px]">
-                Your Profile
+              <p className="text-green-400 text-[11px] mt-1 flex items-center gap-1">
+                <span>View Profile</span>
+                <span className="group-hover:translate-x-0.5 transition-transform inline-block">
+                  →
+                </span>
               </p>
             </div>
+
+            {/* Arrow */}
+            <svg
+              className="w-4 h-4 text-gray-600 shrink-0 group-hover:text-gray-400 transition-colors"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
           </div>
 
           {/* Brand */}
-          <h1 className="text-green-400 text-xs underline font-bold mb-4 tracking-wide">
-            NIKKUtheCoder Coding Platform
-          </h1>
+          <p className="text-green-400 text-[13px] font-semibold mb-5 whitespace-nowrap">
+            NIKKUtheCoder{" "}
+            <span className="text-white text-left font-medium">
+              Coding Platform
+            </span>
+          </p>
 
           {/* Useful Links Heading */}
           <div className="mb-3">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-green-400 font-semibold">
+            <p className="text-[10px] uppercase tracking-[0.3em] text-green-400 font-bold">
               Useful Links
             </p>
             <div className="w-8 h-0.5 bg-green-400 mt-1 rounded-full"></div>
@@ -117,16 +139,16 @@ const Dashboard = () => {
               <span className="text-green-400 group-hover:scale-110 transition">
                 🧠
               </span>
-              <span className="font-medium cursor-pointer group-hover:text-green-400 transition">
-                How to Approach Any DSA Question
-              </span>
+              <span className="font-medium text-left text-[11px] leading-tight group-hover:text-green-400 transition">
+  How to Approach Any DSA Question
+</span>
             </div>
 
             <span className="text-[10px] text-green-400 group-hover:translate-x-1 transition">
               →
             </span>
           </button>
-           {/* create resume button */}
+          {/* create resume button */}
           <button
             onClick={() => navigate("/createresume")}
             className="w-full mb-2 flex cursor-pointer items-center justify-between bg-linear-to-r from-orange-500/10 via-orange-400/5 to-transparent border border-orange-500/30 rounded-lg px-3 py-2 text-xs text-orange-300 hover:text-white hover:border-orange-400 hover:shadow-[0_0_12px_rgba(234,179,8,0.35)] transition-all duration-300 group mt-2"
@@ -195,7 +217,6 @@ const Dashboard = () => {
                 </span>
                 </button> */}
 
-  
           <button
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")
@@ -220,11 +241,8 @@ const Dashboard = () => {
         <div className="flex items-center justify-between gap-3 bg-linear-to-r from-[#0b0f19] via-[#0f172a] to-[#020617] border border-gray-800 rounded-xl px-4 py-2.5 shadow-md hover:shadow-green-500/20 hover:border-green-500/40 transition-all duration-300 group">
           {/* Left: Icon + Title */}
           <div className="flex items-center gap-2">
-            <div className="w-7 h-7 flex items-center justify-center rounded-md bg-green-500/10 text-green-400 group-hover:bg-green-500/20 transition">
-              👥
-            </div>
-
-            <p className="text-[10px] uppercase tracking-wider text-gray-400 group-hover:text-gray-300 whitespace-nowrap">
+            <span className="text-base">👥</span>
+            <p className="text-[10px] uppercase tracking-[0.12em] text-gray-500 whitespace-nowrap">
               Total Learners
             </p>
           </div>
@@ -240,9 +258,9 @@ const Dashboard = () => {
           {/* Buy Me a Coffee */}
           <button
             onClick={() => setOpenQR(true)}
-            className="w-full bg-linear-to-r from-green-400 to-green-600 text-black text-sm py-2 rounded-lg font-medium hover:shadow-lg hover:shadow-green-500/30 transition cursor-pointer"
+            className="w-full bg-green-500 hover:bg-green-400 text-black text-[11.5px] font-semibold py-2 rounded-lg cursor-pointer transition-all duration-200 tracking-wide"
           >
-            Buy Me a Coffee ☕
+            ☕ Buy Me a Coffee
           </button>
 
           {/* QR POPUP */}
@@ -311,14 +329,15 @@ const Dashboard = () => {
 
       {/* MAIN */}
       <div className="flex-1 lg:ml-64 p-4 sm:p-6 lg:p-8 overflow-y-auto lg:h-screen">
-        <h2 className="text-xl sm:text-2xl font-semibold mb-2">
-          Your DSA Journey Starts Here 🚀
-        </h2>
-
-        <p className="text-sm text-gray-400 mb-6">
-          Solve problems step-by-step from Basics to Medium. Build consistency
-          and become interview-ready.
-        </p>
+        <div className="mb-6">
+  <h2 className="text-2xl font-bold text-white mb-1.5">
+    Your DSA Journey Starts Here
+  </h2>
+  <p className="text-[13px] text-gray-500 leading-relaxed">
+    Basics se Advanced tak — ek ek step mein.{" "}
+    <span className="text-green-400">Interview-ready</span> bano.
+  </p>
+</div>
         <TopicSection topic={IFELSE} />
         <TopicSection topic={FOR_LOOP} />
         <TopicSection topic={WHILE_LOOP} />
