@@ -16,12 +16,7 @@ app.use((req, res, next) => {
 });
 // Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "https://nikkuthecoder-com-2.onrender.com",
-    "https://nikkuthecoder.com"
-  ],
-  credentials: true,
+  origin: "*",
 }));
 app.use(express.json());
 app.use("/api/auth", authRoutes);
