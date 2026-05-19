@@ -27,7 +27,7 @@ import Logicalquestions from "./pages/Logicalquestions";
 import LogicalquestionsPractice from "./pages/Logicalquestionspractice";
 import Compiler from "./pages/Compiler";
 import CreateResume from "./pages/Createresume";
-import OOP from "./pages/oop";
+import OOP from "./pages/Oop";
 import Ooppractice from "./pages/Ooppractice";
 
 function App() {
