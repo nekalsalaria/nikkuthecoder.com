@@ -197,7 +197,7 @@ const Dashboard = () => {
             </span>
           </button>
 
-          <button
+          {/* <button
             onClick={() =>
               window.open("https://swapskill-com-1.onrender.com/", "_blank")
             }
@@ -212,7 +212,7 @@ const Dashboard = () => {
             <span className="text-[10px] text-blue-400 group-hover:translate-x-1 transition">
               →
             </span>
-          </button>
+          </button> */}
 
           <div className="h-px bg-gray-800 mb-4 mt-2"></div>
         </div>
