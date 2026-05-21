@@ -6,7 +6,7 @@ A full-stack web platform designed to help users build a strong **Data Structure
 
 ## 🌐 Live Demo
 
-🔗 https://nikkuthecoder-com-2.onrender.com
+🔗 https://nikkuthecoder.site
 
 ---
 
